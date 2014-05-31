@@ -14,6 +14,7 @@ Installation and Dependencies
 Install brick 
 
 git clone https://github.com/xsank/bottle.git
+
 python setup.py install
 
 
