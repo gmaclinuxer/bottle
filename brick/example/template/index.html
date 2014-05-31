@@ -1,0 +1,13 @@
+
+%rebase layout title='Brick'
+
+<div id="main"> 
+%for name in words:
+	<h2>{{name}}</h2>
+	<br/>
+	<a href="/view/{{name}}">More Details...</a>
+%end
+</div>
+<div id="footer">
+	<p>There is no words you need? <a href="/edit/empty">Create</a> one for yourself!</p>
+</div>

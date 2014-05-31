@@ -1,0 +1,12 @@
+
+%rebase layout title="Edit %s" % name
+
+<form method="post" action="/save" accept-charset="utf-8">
+	<div id="main">
+		<h2>Edit <input id="page_name" type="text" name="name" value="{{name}}"></h2>
+		<textarea id="page_body" name="body" cols="60" rows="20">{{body}}</textarea>
+	</div>
+	<div id="footer">
+		<input type="submit" value="save"> or <a href="/view/{{name}}">Cancel</a>
+	</div>
+</form>

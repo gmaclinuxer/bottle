@@ -1,23 +1,20 @@
-Bottle Web Framework
+Brick Web Framework
 ====================
 
-.. image:: http://bottlepy.org/docs/dev/_static/logo_nav.png
-  :alt: Bottle Logo
-  :align: right
 
-Bottle is a fast and simple micro-framework for small web applications. It
-offers request dispatching (URL routing) with URL parameter support, templates,
-a built-in HTTP Server and adapters for many third party WSGI/HTTP-server and
-template engines - all in a single file and with no dependencies other than the
-Python Standard Library.
+Brick is a mini web framework which is derived from Bottle. Brick have the same 
+function of the Bottle. I do these just because bottle is only one file, i want 
+to separate the function of the framework so that i can learn it more easily.
 
-Homepage and documentation: http://bottlepy.org/
 License: MIT (see LICENSE)
 
 Installation and Dependencies
 -----------------------------
 
-Install bottle with ``pip install bottle`` or just `download bottle.py <http://pypi.python.org/pypi/bottle>`_ and place it in your project directory. There are no (hard) dependencies other than the Python Standard Library.
+Install brick 
+
+git clone https://github.com/xsank/bottle.git
+python setup.py install
 
 
 Example
@@ -25,10 +22,23 @@ Example
 
 .. code-block:: python
 
-    from bottle import route, run
+from brick.brick import route,get,post,run,send_file
+from brick.brick import request
+from brick.template import template
 
-    @route('/hello/:name')
-    def hello(name):
-        return '<h1>Hello %s!</h1>' % name.title()
+from util import load_words
 
-    run(host='localhost', port=8080)
+
+@route('/')
+def index():
+    return template('index',**load_words())
+	
+@route("/static/:filename")
+def static_file(filename):
+    send_file(filename,root="static")
+	
+	
+run(host='localhost',port=8080)
+
+
+I also use the Brick write an mini wiki project to test, all the source code is in example directory.
