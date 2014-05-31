@@ -22,23 +22,23 @@ Example
 
 .. code-block:: python
 
-from brick.brick import route,get,post,run,send_file
-from brick.brick import request
-from brick.template import template
+    from brick.brick import route,get,post,run,send_file
+    from brick.brick import request
+    from brick.template import template
 
-from util import load_words
+    from util import load_words
 
 
-@route('/')
-def index():
-    return template('index',**load_words())
-	
-@route("/static/:filename")
-def static_file(filename):
-    send_file(filename,root="static")
-	
-	
-run(host='localhost',port=8080)
+    @route('/')
+    def index():
+        return template('index',**load_words())
+        
+    @route("/static/:filename")
+    def static_file(filename):
+        send_file(filename,root="static")
+        
+        
+    run(host='localhost',port=8080)
 
 
 I also use the Brick write an mini wiki project to test, all the source code is in example directory.
