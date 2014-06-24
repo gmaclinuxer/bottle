@@ -7,6 +7,7 @@ Created on 2013-4-21
 from structure import HeaderDict
 from config import ERROR_PAGE_TEMPLATE
 
+
 class BrickException(Exception):
     '''base class of all exception'''
     pass
