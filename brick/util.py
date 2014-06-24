@@ -25,14 +25,18 @@ from config import DEBUG
 def toa(s,encode='utf-8'):
     return s.encode(encode) if isinstance(s,unicode) else str(s)
     
+    
 def tou(s,encode='utf-8',error='strict'):
     return s.decode(encode,error) if isinstance(s,str) else unicode(s)
+    
 
 def depr(message,hard=False):
     warnings.warn(message,DeprecationWarning,stacklevel=3)
     
+    
 def abort(code=500, text='Unknown Error: Appliction stopped.'):
     raise HTTPError(code, text)
+    
 
 def debug(mode=True):
     DEBUG = bool(mode)
@@ -58,6 +62,7 @@ def parse_auth(header):
 
 def _lscmp(a, b):
     return not sum(0 if x==y else 1 for x, y in zip(a, b)) and len(a) == len(b)
+    
 
 def path_shift(script_name, path_info, shift=1):
     if shift == 0: return script_name, path_info
@@ -80,11 +85,13 @@ def path_shift(script_name, path_info, shift=1):
     new_path_info = '/' + '/'.join(pathlist)
     if path_info.endswith('/') and pathlist: new_path_info += '/'
     return new_script_name, new_path_info
+    
 
 def cookie_encode(data, key):
     msg = base64.b64encode(pickle.dumps(data, -1))
     sig = base64.b64encode(hmac.new(key, msg).digest())
     return toa('!') + sig + toa('?') + msg
+    
 
 def cookie_decode(data, key):
     data = toa(data)
@@ -93,9 +100,11 @@ def cookie_decode(data, key):
         if _lscmp(sig[1:], base64.b64encode(hmac.new(key, msg).digest())):
             return pickle.loads(base64.b64decode(msg))
     return None
+    
 
 def cookie_is_encoded(data):
     return bool(data.startswith(toa('!')) and toa('?') in data)
+    
 
 def yieldroutes(func):
     path = func.__name__.replace('__','/').lstrip('/')
@@ -106,6 +115,7 @@ def yieldroutes(func):
     for arg in spec[0][argc:]:
         path += '/:%s' % arg
         yield path
+        
         
 def _reloader_child(server, app, interval):
     lockfile = os.environ.get('BRICK_LOCKFILE')
@@ -179,6 +189,7 @@ class FileCheckerThread(threading.Thread):
                 time.sleep(self.interval)
         if self.status != 5:
             thread.interrupt_main()        
+            
 
 class WSGIFileWrapper(object):
 
