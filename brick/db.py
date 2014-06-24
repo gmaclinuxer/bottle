@@ -8,6 +8,7 @@ import sqlite3
 
 from exception import DatabaseOperationError
 
+
 class SQLite(object):
     def __init__(self,database):
         self.database=database
