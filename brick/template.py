@@ -12,6 +12,7 @@ from exception import TemplateError
 from util import tou,abort,html_escape
 from config import TEMPLATES,TEMPLATE_PATH,DEBUG
 
+
 class BaseTemplate(object):
     extentions = ['tpl','html']
     settings = {}

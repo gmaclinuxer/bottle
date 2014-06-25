@@ -105,7 +105,6 @@ class Brick(object):
             return callback
         return wrapper
 
-
     def get(self, path=None, method='GET', **kargs):
         return self.route(path, method, **kargs)
 
@@ -218,6 +217,7 @@ class Brick(object):
             environ['wsgi.errors'].write(err) 
             start_response('500 INTERNAL SERVER ERROR', [('Content-Type', 'text/html')])
             return [toa(err)]
+
         
 def run(app=None, server=WSGIRefServer, host='127.0.0.1', port=8000,
         interval=1, reloader=False, quiet=False, **kargs):
@@ -244,6 +244,7 @@ def run(app=None, server=WSGIRefServer, host='127.0.0.1', port=8000,
     except KeyboardInterrupt: pass
     if not server.quiet and not os.environ.get('BRICK_CHILD'):
         print "Shutting down..."
+
         
 def redirect(url, code=303):
     scriptname = request.environ.get('SCRIPT_NAME', '').rstrip('/') + '/'
@@ -292,7 +293,8 @@ def static_file(filename, root, guessmime=True, mimetype=None, download=False):
         return HTTPResponse('', header=header)
     else:
         return HTTPResponse(open(filename, 'rb'), header=header)
-  
+
+
 class AppStack(list):
 
     def __call__(self):

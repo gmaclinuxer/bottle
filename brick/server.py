@@ -4,6 +4,7 @@ Created on 2013-4-21
 @author: Xsank
 '''
 
+
 class ServerAdapter(object):
     quiet = False
 
@@ -18,7 +19,8 @@ class ServerAdapter(object):
     def __repr__(self):
         args = ', '.join(['%s=%s'%(k,repr(v)) for k, v in self.options.items()])
         return "%s(%s)" % (self.__class__.__name__, args)
-    
+
+
 class WSGIRefServer(ServerAdapter):
     def run(self, handler):
         from wsgiref.simple_server import make_server, WSGIRequestHandler

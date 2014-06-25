@@ -8,6 +8,7 @@ import re
 
 from exception import RouteError,RouteBuildError,RouteSyntaxError
 
+
 class Route(object):
     syntax = re.compile(r'(.*?)(?<!\\):([a-zA-Z_]+)?(?:#(.*?)#)?')
     default = '[^/]+'
@@ -75,6 +76,7 @@ class Route(object):
 
     def __eq__(self, other):
         return self.route == other.route
+
 
 class Router(object):
 

@@ -15,6 +15,7 @@ from structure import HeaderDict,MultiDict
 from util import depr,path_shift,parse_auth,cookie_decode,cookie_encode
 from config import MEMFILE_MAX
 
+
 class Request(object):
     def __init__(self, environ=None, config=None):
         self.bind(environ or {}, config)
@@ -39,10 +40,15 @@ class Request(object):
         self['PATH_INFO'] = self.path
 
     def __getitem__(self, key): return self.environ[key]
+
     def __delitem__(self, key): self[key] = ""; del(self.environ[key])
+
     def __iter__(self): return iter(self.environ)
+
     def __len__(self): return len(self.environ)
+
     def keys(self): return self.environ.keys()
+
     def __setitem__(self, key, value):
         self.environ[key] = value
         todelete = []
@@ -175,7 +181,6 @@ class Request(object):
     @property
     def is_ajax(self):
         return self.header.get('X-Requested-With') == 'XMLHttpRequest'
-
 
 
 class Response(object):

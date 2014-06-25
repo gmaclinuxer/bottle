@@ -13,6 +13,7 @@ from brick.config import LOG_FILE,LOG_FORMAT,DEBUG as APP_DEBUG
 
 _logger_lock=Lock()
 
+
 class Logger(object):
     def __init__(self):
         self._logger=None
@@ -26,6 +27,7 @@ class Logger(object):
                 return self._logger
             self._logger=create_logger(self)
             return self._logger
+
 
 def create_logger(log):
     Logger=getLoggerClass()
@@ -41,8 +43,7 @@ def create_logger(log):
         #always compile error,so i insert self
         def emit(self,x,record):
             StreamHandler.emit(x, record) if APP_DEBUG else None
-            
-    
+
     handler=DebugHandler()
     handler.setLevel(DEBUG)
     handler.setFormatter(Formatter(LOG_FORMAT))

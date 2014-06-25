@@ -15,19 +15,23 @@ from util import load_page,save_page,load_words
 def index():
     return template('index',**load_words())
 
+
 @get('/view/:name')
 def view(name):
     return template('view',**load_page(name))
+
 
 @route('/edit/:name')
 def edit(name):
     return template("edit",**load_page(name))
 
+
 @post('/save')
 def save():
     save_page(request.POST['name'],request.POST['body'])
     redirect("view/%s" % request.POST['name'])
-    
+
+
 @route("/static/:filename")
 def static_file(filename):
     send_file(filename,root="static")
