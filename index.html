@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Brick by xsank</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Brick</h1>
+        <p>Brick is a mini web framework which is derived from Bottle. Just for study.</p>
+
+        <p class="view"><a href="https://github.com/xsank/bottle">View the Project on GitHub <small>xsank/bottle</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/xsank/bottle/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/xsank/bottle/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/xsank/bottle">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="brick-web-framework" class="anchor" href="#brick-web-framework"><span class="octicon octicon-link"></span></a>Brick Web Framework</h1>
+
+<p>Brick is a mini web framework which is derived from Bottle. Brick have the same 
+function of the Bottle. I do these just because bottle is only one file, i want 
+to separate the function of the framework so that i can learn it more easily.</p>
+
+<p>License: MIT (see LICENSE)</p>
+
+<h2>
+<a name="installation-and-dependencies" class="anchor" href="#installation-and-dependencies"><span class="octicon octicon-link"></span></a>Installation and Dependencies</h2>
+
+<p>Install brick </p>
+
+<p>git clone <a href="https://github.com/xsank/bottle.git">https://github.com/xsank/bottle.git</a></p>
+
+<p>python setup.py install</p>
+
+<h2>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
+
+<p>.. code-block:: python</p>
+
+<pre><code>from brick.brick import route,get,post,run,send_file
+from brick.brick import request
+from brick.template import template
+
+from util import load_words
+
+
+@route('/')
+def index():
+    return template('index',**load_words())
+
+@route("/static/:filename")
+def static_file(filename):
+    send_file(filename,root="static")
+
+
+run(host='localhost',port=8080)
+</code></pre>
+
+<p>I also use the Brick write an mini wiki project to test, all the source code is in example directory.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/xsank">xsank</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
